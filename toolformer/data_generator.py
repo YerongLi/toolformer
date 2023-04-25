@@ -72,7 +72,7 @@ class DataGenerator(nn.Module):
         generated_ids = torch.tensor([]).to(self.device)
         i = torch.tensor([0]).to(self.device)
         
-        api_pos_probs = torch.tensor([])
+        api_pos_probs = torch.tensor([]).to(self.device)
         
         with torch.no_grad():    
             while True:
@@ -105,7 +105,7 @@ class DataGenerator(nn.Module):
                     i += 1
         
         if api_pos_probs.numel() == 0:
-            api_positions = torch.tensor([])
+            api_positions = torch.tensor([]).to(self.device)
         else:
             _, indices = torch.sort(api_pos_probs[:, 0], descending=True)
             top_k_sampling = self.top_k_sampling
@@ -123,7 +123,7 @@ class DataGenerator(nn.Module):
         MAX_PAD = 50
         
         # the ids before the start of an api call
-        pre_api_ids = torch.tensor([])
+        pre_api_ids = torch.tensor([]).to(self.device)
 
         for position in positions:
             text_ids = torch.cat([generated_ids[:position], self.api_start_token_id], dim=0)
@@ -137,7 +137,7 @@ class DataGenerator(nn.Module):
         PROMPT_LENGTH = len(prompt_ids)
         
         # TODO: optimzie this
-        prompt_and_pre_api_ids = torch.tensor([])
+        prompt_and_pre_api_ids = torch.tensor([]).to(self.device)
         for x in pre_api_ids:
             prompt_and_pre_api_ids = torch.cat([
                 prompt_and_pre_api_ids,
@@ -162,7 +162,7 @@ class DataGenerator(nn.Module):
         api: BaseAPI,
         candidate_ids: TensorType["n_candidates", "seq_len"],
     ):
-        conditioning_api_ids = torch.tensor([])
+        conditioning_api_ids = torch.tensor([]).to(self.device)
 
         API_NAME = api.name
         MAX_PAD = 100
@@ -225,7 +225,7 @@ class DataGenerator(nn.Module):
         losses,
         candidates: TensorType["seq_len"]
     ):
-        filtered_augmented_text_ids = torch.tensor([])
+        filtered_augmented_text_ids = torch.tensor([]).to(self.device)
         for i, position in enumerate(losses):
             negative_loss = min(losses[position][0], losses[position][1])
             positive_loss = losses[position][2]
@@ -301,8 +301,8 @@ class DataGenerator(nn.Module):
         augmented_text_ids = _normalize_weights(augmented_text_ids)
                 
         def extract_conditioning_ids_and_target_ids(augmented_text_ids):
-            conditioning_text_ids = torch.tensor([])
-            target_ids = torch.tensor([])
+            conditioning_text_ids = torch.tensor([]).to(self.device)
+            target_ids = torch.tensor([]).to(self.device)
             
             for _, api_start_position_dict in augmented_text_ids["api_start_positions"].items():
                 for _, seq_position_dict in api_start_position_dict["seq_positions"].items():
@@ -365,7 +365,7 @@ class DataGenerator(nn.Module):
         self,
         text: str,
     ) -> TensorType["n_apis", "n_candidates", "seq_len"]:
-        filtered_apis = torch.tensor([])
+        filtered_apis = torch.tensor([]).to(self.device)
         
         for api in self.apis:
             # TODO: add support batch
