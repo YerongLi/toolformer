@@ -40,9 +40,9 @@ class DataGenerator(nn.Module):
         output_character = config["data_generator"]["api_output_character"]
         
         # add a space, because when the model generate a token, it's also include a "space"
-        self.api_start_token_id = tokenizer(f' {start_character}', return_tensors="pt")["input_ids"][0]
-        self.api_end_token_id = tokenizer(end_character, return_tensors="pt")["input_ids"][0]
-        self.api_output_token_id = tokenizer(f'{output_character}', return_tensors="pt")["input_ids"][0]
+        self.api_start_token_id = tokenizer(f' {start_character}', return_tensors="pt")["input_ids"][0].to(device)
+        self.api_end_token_id = tokenizer(end_character, return_tensors="pt")["input_ids"][0].to(device)
+        self.api_output_token_id = tokenizer(f'{output_character}', return_tensors="pt")["input_ids"][0].to(device)
         
         self.top_k_sampling = config["data_generator"]["top_k_sampling"]
         self.sampling_threshold = config["data_generator"]["sampling_threshold"]
