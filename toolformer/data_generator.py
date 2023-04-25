@@ -88,7 +88,7 @@ class DataGenerator(nn.Module):
                 if api_start_prob > self.sampling_threshold:
                     api_pos_probs = torch.cat([
                         api_pos_probs,
-                        torch.tensor([api_start_prob, i]).unsqueeze(0)
+                        torch.tensor([api_start_prob, i]).unsqueeze(0).to(self.device)
                     ], dim=0)     
                 
                 # sampling a token
