@@ -75,7 +75,7 @@ class DataGenerator(nn.Module):
         
         with torch.no_grad():    
             while True:
-                logging.info(next(self.model.parameters()).device)
+                # logging.info(next(self.model.parameters()).device)
                 logits = self.model(
                     input_ids=prompt_and_generated_ids.unsqueeze(0),
                 ).logits
@@ -375,6 +375,7 @@ class DataGenerator(nn.Module):
             api_start_idxs, generated_ids = self.sample_api_position(prompt_ids)
             
             # obtaining api responses
+            logging.info(next(prompt_ids.device))
             candidate_ids = self.obtain_api_response(prompt_ids, api_start_idxs, generated_ids)
 
             # filtering
