@@ -18,10 +18,6 @@ text = "From this, we have 10 - 5 minutes = 5 minutes."
 apis = [calculator_api]
 generator = DataGenerator(config, model, tokenizer, apis=apis)
 
-text = "From this, we have 10 - 5 minutes = 5 minutes."
-apis = [calculator_api]
-generator = DataGenerator(config, model, tokenizer, apis=apis)
-
 augumented_text_ids = generator.generate(text)
 
 print(tokenizer.decode(augumented_text_ids[0][0], skip_special_tokens=True))
