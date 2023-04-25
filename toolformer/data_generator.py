@@ -31,7 +31,8 @@ class DataGenerator(nn.Module):
         config: dict,
         model: Callable, tokenizer: Callable,
         apis: List[BaseAPI],
-        device: str = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        device: 'cpu'
+        # device: str = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     ):
         super().__init__()
         start_character = config["data_generator"]["api_start_character"]
