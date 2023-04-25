@@ -5,7 +5,7 @@ from toolformer.api import CalculatorAPI
 from toolformer.prompt import calculator_prompt
 from toolformer.utils import yaml2dict
 
-config = yaml2dict('../configs/default.yaml')
+config = yaml2dict('./configs/default.yaml')
 calculator_api = CalculatorAPI(
     "Calculator", calculator_prompt,
     sampling_threshold=0.2, filtering_threshold=0.2
