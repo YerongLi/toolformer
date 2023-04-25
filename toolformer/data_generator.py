@@ -66,7 +66,7 @@ class DataGenerator(nn.Module):
         """Sampling API positions."""
         # TODO: add support batch
         # the ids of the prompt and generated_ids
-        prompt_and_generated_ids = prompt_ids
+        prompt_and_generated_ids = prompt_ids.to(self.device)
         # only the ids of the generated_ids
         generated_ids = torch.tensor([]).to(self.device)
         i = torch.tensor([0]).to(self.device)
@@ -75,7 +75,7 @@ class DataGenerator(nn.Module):
         
         with torch.no_grad():    
             while True:
-                logging.info(next(model.parameters()).device)
+                logging.info(next(self.model.parameters()).device)
                 logits = self.model(
                     input_ids=prompt_and_generated_ids.unsqueeze(0),
                 ).logits
