@@ -192,7 +192,7 @@ class DataGenerator(nn.Module):
             
             api_request_content = extract_api_request_content(text, api_name=API_NAME)
             api_response = api(api_request_content)
-            api_response_ids = self.tokenizer(api_response, return_tensors="pt")["input_ids"][0]
+            api_response_ids = self.tokenizer(api_response, return_tensors="pt")["input_ids"][0].to(self.device)
             # Format: "-> [api_response]"
             api_response_with_arrow_ids = torch.cat([self.api_output_token_id, api_response_ids], dim=0)
             
