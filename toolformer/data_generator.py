@@ -31,7 +31,7 @@ class DataGenerator(nn.Module):
         config: dict,
         model: Callable, tokenizer: Callable,
         apis: List[BaseAPI],
-        device: torch.device("cpu")
+        device : str = torch.device("cpu")
         # device: str = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     ):
         super().__init__()
