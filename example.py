@@ -25,18 +25,11 @@ from toolformer.utils import yaml2dict
 import logging
 
 # create logger
-logger = logging.getLogger(__name__)
-
-# create console handler and set level to debug
-fh = logging.FileHandler(filename='./output.log')
-fh.setLevel(logging.DEBUG)
-
-# add formatter to fh
-fh.setFormatter(logging.Formatter("%(asctime)s;%(levelname)s;%(message)s",
-                              "%Y-%m-%d %H:%M:%S"))
-
-# add fh to logger
-logger.addHandler(fh)
+logging.basicConfig(
+    format='%(asctime)s %(levelname)-8s %(message)s',
+    level=logging.INFO,
+    filename='./output.log'
+    datefmt='%Y-%m-%d %H:%M:%S')
 
 # "application" code
 logging.debug("debug message")
