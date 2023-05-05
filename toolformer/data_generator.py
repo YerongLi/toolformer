@@ -196,6 +196,10 @@ class DataGenerator(nn.Module):
             
             api_syntax = extract_api_syntax(text, api_name=API_NAME)
             api_syntax_ids = self.tokenizer(api_syntax, return_tensors="pt")["input_ids"][0]
+            logging.info('device')
+            logging.info(api_syntax_ids[:-1].get_device())
+            logging.info(api_response_with_arrow_ids.get_device())
+            logging.info(api_syntax_ids[-1:].get_device())
             api_syntax_with_response_ids = torch.cat([api_syntax_ids[:-1], api_response_with_arrow_ids, api_syntax_ids[-1:]])
             api_syntax_without_response_ids = torch.cat([api_syntax_ids[:-1], self.api_output_token_id, api_syntax_ids[-1:]])
                               
