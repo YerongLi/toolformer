@@ -9,8 +9,8 @@ dataset:
   path: the_pile
 
 data_generator:
-  api_start_character: "[Yerong]"
-  api_end_character: "[Yerong]"
+  api_start_character: "["
+  api_end_character: "]"
   api_output_character: "→"
 
   top_k_sampling: 3
