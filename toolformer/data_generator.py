@@ -278,7 +278,7 @@ class DataGenerator(nn.Module):
 
 
                 conditioning_text_ids = text_ids[:j].to(self.device)
-                logging.info(api_ids[0].get_device())
+                # logging.info(api_ids[0].get_device())
                 # logging.info(SPACE_TOKEN.get_device())
                 # logging.info(conditioning_text_ids.get_device())
                 api_and_text_ids = torch.stack([
@@ -314,7 +314,7 @@ class DataGenerator(nn.Module):
             
             for _, api_start_position_dict in augmented_text_ids["api_start_positions"].items():
                 for _, seq_position_dict in api_start_position_dict["seq_positions"].items():
-                    target_ids = torch.concat([target_ids, seq_position_dict["target_ids"]], dim=0)
+                    target_ids = torch.concat([target_ids, seq_position_dict["target_ids"].to(self.device)], dim=0)
                     for prompt_id in seq_position_dict["prompt_ids"]:
                         conditioning_text_ids = torch.cat([
                             conditioning_text_ids,
