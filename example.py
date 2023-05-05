@@ -31,9 +31,6 @@ logging.basicConfig(
     filename='./output.log',
     datefmt='%Y-%m-%d %H:%M:%S')
 
-# "application" code
-logging.debug("debug message")
-logging.info("info message")
 logging.info(f'Logger start: {os.uname()[1]}')
 
 # quit()
@@ -45,7 +42,7 @@ calculator_api = CalculatorAPI(
 
 model = AutoModelForCausalLM.from_pretrained("bigscience/bloom-560m")
 tokenizer = AutoTokenizer.from_pretrained("bigscience/bloom-560m")
-
+logging.info('Finishing loading from AutoModelForCausalLM')
 text = "From this, we have 10 - 5 minutes = 5 minutes."
 apis = [calculator_api]
 generator = DataGenerator(config, model, tokenizer, apis=apis)
