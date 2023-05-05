@@ -424,8 +424,18 @@ class DataGenerator(nn.Module):
             logging.info('Finish filtering')
             # return prompt_ids, api_start_idxs, generated_ids, candidate_ids, text_ids
             filtered_candidate_ids = self.filter_api(api, text_ids, api_start_idxs, candidate_ids)
-            logging.info('filtered_candidate_ids')        
-            logging.info(filtered_candidate_ids)        
+            # logging.info('filtered_candidate_ids')        
+            # logging.info(filtered_candidate_ids)
+            #     2023-05-05 01:22:37 INFO     filtered_candidate_ids
+            # 2023-05-05 01:22:37 INFO     tensor([[     3,      3,      3,      3,      3,      3,      3,      3,      3,
+            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
+            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
+            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
+            #               3,      3,      3,  12620,   1119,     15,   1701,   1542,   1581,
+            #             647,    973,  17405,    564,   1111, 120009,   2623,     11,   1416,
+            #             647,    973,     12,     64,    973,  17405,   6149]],
+            #        device='cuda:0')
+     
             filtered_apis = torch.cat([filtered_apis, filtered_candidate_ids.unsqueeze(0)], dim=0)
         
         return filtered_apis.long()
