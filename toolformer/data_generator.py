@@ -400,7 +400,7 @@ class DataGenerator(nn.Module):
             # INFO:root:tensor([ 12620,   1119,     15,   1701,   1542,   1581,    647,    973,  17405,
             # 564,   1111, 120009,   2623,     11,   1416,    647,    973,     12,
             # 64,    973,  17405,   6149])
-
+            logging.info('Finish sampling')
 
             # obtaining api responses
             logging.info('prompt_ids.get_device()')
@@ -409,10 +409,11 @@ class DataGenerator(nn.Module):
 
             # filtering
             text_ids = self.tokenizer(text, return_tensors="pt")["input_ids"][0]
-            
+            logging.info('Finish filtering')
             # return prompt_ids, api_start_idxs, generated_ids, candidate_ids, text_ids
             filtered_candidate_ids = self.filter_api(api, text_ids, api_start_idxs, candidate_ids)
-                    
+            logging.info('filtered_candidate_ids')        
+            logging.info(filtered_candidate_ids)        
             filtered_apis = torch.cat([filtered_apis, filtered_candidate_ids.unsqueeze(0)], dim=0)
         
         return filtered_apis.long()
