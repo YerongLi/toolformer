@@ -370,14 +370,33 @@ class DataGenerator(nn.Module):
         for api in self.apis:
             # TODO: add support batch
             prompt = api.prompt_template.format(input=text)
-            print('prompt')
-            print(prompt)
+            # print('prompt')
+            # print(prompt)
+            # Your task is to add calls to a Calculator API to a piece of text. The API call should help you get information required to complete the text. 
+
+            # You can call the API by writing "Calculator(operation)!" where "operation" is the type of calculation you want to perform. Here are some examp
+            # les of API calls:
+
+            # Input: John has 5 apples and his friend gave him 3 more. John now has 8 apples.
+            # Ouput: John has 5 apples and his friend gave him 3 more. John now has [Calculator("5 + 3")] 8 apples.
+
+            # Input: Jane needs to divide 24 pieces of candy equally among 6 kids. Each kid will get 4 pieces of candy.
+            # Output: Jane needs to divide 24 pieces of candy equally among 6 kids. Each kid will get [Calculator(24 / 6)] 4 pieces of candy.
+
+            # Input: From this, we have 4 * 30 minutes = 120 minutes.
+            # Output: From this, we have 4 * 30 minutes = [Calculator(4 * 30)] 120 minutes.
+
+            # Input: From this, we have 10 - 5 minutes = 5 minutes.
+            # Output:
+
+
             prompt_ids = self.tokenizer(prompt, return_tensors="pt")["input_ids"][0].to(self.device)
         
             # sampling positions
             api_start_idxs, generated_ids = self.sample_api_position(prompt_ids)
             
             # obtaining api responses
+            logging.info('prompt_ids.get_device()')
             logging.info(prompt_ids.get_device())
             candidate_ids = self.obtain_api_response(prompt_ids, api_start_idxs, generated_ids)
 
