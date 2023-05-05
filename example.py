@@ -22,7 +22,7 @@ formatter = logging.Formatter("%(asctime)s;%(levelname)s;%(message)s")
 ch.setFormatter(formatter)
 
 logging.info(f'Logger start: {os.uname()[1]}')
-
+print('Start logging')
 config = yaml2dict('./configs/default.yaml')
 calculator_api = CalculatorAPI(
     "Calculator", calculator_prompt,
