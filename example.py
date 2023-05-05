@@ -7,10 +7,31 @@ from toolformer.data_generator import DataGenerator
 from toolformer.api import CalculatorAPI
 from toolformer.prompt import calculator_prompt
 from toolformer.utils import yaml2dict
-logger = logging.getLogger(__name__)
+# logger = logging.getLogger(__name__)
 
-logger.setLevel(logging.DEBUG)
+# logger.setLevel(logging.DEBUG)
 logging.basicConfig(filename='./output.log', level=logging.DEBUG)
+
+
+
+# # create console handler and set level to debug
+# ch = logging.StreamHandler()
+# ch.setLevel(logging.DEBUG)
+
+# # create formatter
+# formatter = logging.Formatter("%(asctime)s;%(levelname)s;%(message)s")
+
+# # add formatter to ch
+# ch.setFormatter(formatter)
+
+# logging.info(f'Logger start: {os.uname()[1]}')
+# print('Start logging')
+
+import logging
+
+# create logger
+logger = logging.getLogger("logging_tryout2")
+logger.setLevel(logging.DEBUG)
 
 # create console handler and set level to debug
 ch = logging.StreamHandler()
@@ -22,8 +43,17 @@ formatter = logging.Formatter("%(asctime)s;%(levelname)s;%(message)s")
 # add formatter to ch
 ch.setFormatter(formatter)
 
-logging.info(f'Logger start: {os.uname()[1]}')
-print('Start logging')
+# add ch to logger
+logger.addHandler(ch)
+
+# "application" code
+logger.debug("debug message")
+logger.info("info message")
+logger.warn("warn message")
+logger.error("error message")
+logger.critical("critical message")
+
+quit()
 config = yaml2dict('./configs/default.yaml')
 calculator_api = CalculatorAPI(
     "Calculator", calculator_prompt,
