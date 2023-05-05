@@ -34,7 +34,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 # create console handler and set level to debug
-# ch = logging.StreamHandler()
+ch = logging.FileHandler()
 ch.setLevel(logging.DEBUG)
 
 # create formatter
