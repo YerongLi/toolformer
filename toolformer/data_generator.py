@@ -415,8 +415,8 @@ class DataGenerator(nn.Module):
             logging.info('Finish sampling')
 
             # obtaining api responses
-            logging.info('prompt_ids.get_device()')
-            logging.info(prompt_ids.get_device())
+            # logging.info('prompt_ids.get_device()')
+            # logging.info(prompt_ids.get_device())
             candidate_ids = self.obtain_api_response(prompt_ids, api_start_idxs, generated_ids)
 
             # filtering
