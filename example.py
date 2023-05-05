@@ -1,9 +1,15 @@
+import logging
+
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 from toolformer.data_generator import DataGenerator
 from toolformer.api import CalculatorAPI
 from toolformer.prompt import calculator_prompt
 from toolformer.utils import yaml2dict
+
+logging.basicConfig(filename='./output.log', level=logging.DEBUG)
+formatter = logging.Formatter("%(asctime)s;%(levelname)s;%(message)s",
+                              "%Y-%m-%d %H:%M:%S")
 
 config = yaml2dict('./configs/default.yaml')
 calculator_api = CalculatorAPI(

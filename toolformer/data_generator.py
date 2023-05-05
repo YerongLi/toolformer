@@ -17,8 +17,6 @@ from torchtyping import TensorType
 from einops import rearrange
 
 from .api import BaseAPI
-logging.basicConfig(filename='./output.log', level=logging.DEBUG)
-formatter = logging.Formatter('[%(asctime)s] p%(process)s {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s','%m-%d %H:%M:%S')
 
 # %% ../nbs/04_data_generator.ipynb 5
 class AugmentedCandidate(TypedDict):
