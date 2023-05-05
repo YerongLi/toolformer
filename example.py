@@ -7,11 +7,6 @@ from toolformer.data_generator import DataGenerator
 from toolformer.api import CalculatorAPI
 from toolformer.prompt import calculator_prompt
 from toolformer.utils import yaml2dict
-# logger = logging.getLogger(__name__)
-
-# logger.setLevel(logging.DEBUG)
-# logging.basicConfig(filename='./output.log', level=logging.DEBUG)
-
 
 
 # # create console handler and set level to debug
@@ -34,17 +29,16 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 # create console handler and set level to debug
-ch = logging.FileHandler('./output.log')
-ch.setLevel(logging.DEBUG)
+fh = logging.FileHandler(filename='./output.log')
+fh.setLevel(logging.DEBUG)
 
-# create formatter
-formatter = logging.Formatter("%(asctime)s;%(levelname)s;%(message)s")
 
 # add formatter to ch
-ch.setFormatter(formatter)
+fh.setFormatter(logging.Formatter("%(asctime)s;%(levelname)s;%(message)s",
+                              "%Y-%m-%d %H:%M:%S"))
 
 # add ch to logger
-logger.addHandler(ch)
+logger.addHandler(fh)
 
 # "application" code
 logger.debug("debug message")
@@ -53,7 +47,7 @@ logger.warn("warn message")
 logger.error("error message")
 logger.critical("critical message")
 
-quit()
+# quit()
 config = yaml2dict('./configs/default.yaml')
 calculator_api = CalculatorAPI(
     "Calculator", calculator_prompt,
