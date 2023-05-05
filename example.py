@@ -40,8 +40,12 @@ calculator_api = CalculatorAPI(
     sampling_threshold=0.2, filtering_threshold=0.2
 )
 
-model = AutoModelForCausalLM.from_pretrained("bigscience/bloom-560m")
-tokenizer = AutoTokenizer.from_pretrained("bigscience/bloom-560m")
+# model = AutoModelForCausalLM.from_pretrained("bigscience/bloom-560m")
+# tokenizer = AutoTokenizer.from_pretrained("bigscience/bloom-560m")
+
+model = AutoModelForCausalLM.from_pretrained("EleutherAI/gpt-j-6B")
+tokenizer = AutoTokenizer.from_pretrained("EleutherAI/gpt-j-6B")
+
 logging.info('Finishing loading from AutoModelForCausalLM')
 text = "From this, we have 10 - 5 minutes = 5 minutes."
 apis = [calculator_api]
