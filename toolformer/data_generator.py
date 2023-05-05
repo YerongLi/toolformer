@@ -422,6 +422,7 @@ class DataGenerator(nn.Module):
             # filtering
             text_ids = self.tokenizer(text, return_tensors="pt")["input_ids"][0]
             logging.info('Finish filtering')
+            del prompt_ids, generated_ids
             # return prompt_ids, api_start_idxs, generated_ids, candidate_ids, text_ids
             torch.cuda.empty_cache()
             filtered_candidate_ids = self.filter_api(api, text_ids, api_start_idxs, candidate_ids)
