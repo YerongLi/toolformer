@@ -10,6 +10,7 @@ from toolformer.utils import yaml2dict
 logger = logging.getLogger(__name__)
 
 logger.setLevel(logging.DEBUG)
+logging.basicConfig(filename='./output.log', level=logging.DEBUG)
 
 # create console handler and set level to debug
 ch = logging.StreamHandler()
