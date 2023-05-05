@@ -274,6 +274,11 @@ class DataGenerator(nn.Module):
                 
                 # in the formua, from x_1 to x_j (include x_j)
                 # => generate_ids[:j]
+                logging.info('device')
+                logging.info(api_ids[0].get_device())
+                logging.info(SPACE_TOKEN.get_device())
+                logging.info(conditioning_text_ids.get_device())
+
                 conditioning_text_ids = text_ids[:j]
                 api_and_text_ids = torch.stack([
                     F.pad(conditioning_text_ids, pad=(API_LENGTH + len(SPACE_TOKEN), 0), value=self.pad_token_id), # [text_ids]
