@@ -27,15 +27,13 @@ import logging
 # create logger
 logging.basicConfig(
     format='%(asctime)s %(levelname)-8s %(message)s',
-    level=logging.INFO,
+    level=logging.DEBUG,
     filename='./output.log',
     datefmt='%Y-%m-%d %H:%M:%S')
 
 # "application" code
 logging.debug("debug message")
 logging.info("info message")
-logger.error("error message")
-logger.critical("critical message")
 logging.info(f'Logger start: {os.uname()[1]}')
 
 # quit()
