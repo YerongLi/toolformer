@@ -392,6 +392,7 @@ class DataGenerator(nn.Module):
             prompt_ids = self.tokenizer(prompt, return_tensors="pt")["input_ids"][0].to(self.device)
         
             # sampling positions
+            logging.info('Start sampling')
             api_start_idxs, generated_ids = self.sample_api_position(prompt_ids)
             # logging.info('api_start_idxs, generated_ids')
             # logging.info(api_start_idxs)
