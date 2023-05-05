@@ -10,7 +10,7 @@ from toolformer.utils import yaml2dict
 # logger = logging.getLogger(__name__)
 
 # logger.setLevel(logging.DEBUG)
-logging.basicConfig(filename='./output.log', level=logging.DEBUG)
+# logging.basicConfig(filename='./output.log', level=logging.DEBUG)
 
 
 
@@ -34,7 +34,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 # create console handler and set level to debug
-ch = logging.FileHandler()
+ch = logging.FileHandler('./output.log')
 ch.setLevel(logging.DEBUG)
 
 # create formatter
