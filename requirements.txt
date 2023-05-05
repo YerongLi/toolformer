@@ -5,3 +5,4 @@ torchtyping
 einops
 wolframalpha
 langchain
+accelerate
