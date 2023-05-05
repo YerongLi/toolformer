@@ -3,3 +3,4 @@ torch
 numpy
 torchtyping
 einops
+wolframalpha
