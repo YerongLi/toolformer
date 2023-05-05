@@ -363,6 +363,7 @@ class DataGenerator(nn.Module):
         self,
         text: str,
     ) -> TensorType["n_apis", "n_candidates", "seq_len"]:
+        logging.info('Entering generate')
         filtered_apis = torch.tensor([]).to(self.device)
         
         for api in self.apis:
