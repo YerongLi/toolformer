@@ -30,7 +30,7 @@ logging.basicConfig(filename='./output.log', level=logging.DEBUG)
 import logging
 
 # create logger
-logger = logging.getLogger("logging_tryout2")
+logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 # create console handler and set level to debug
