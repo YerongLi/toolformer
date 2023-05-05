@@ -1,6 +1,6 @@
 import logging
 import os
-
+import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 from toolformer.data_generator import DataGenerator
