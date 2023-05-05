@@ -26,26 +26,24 @@ import logging
 
 # create logger
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
 
 # create console handler and set level to debug
 fh = logging.FileHandler(filename='./output.log')
 fh.setLevel(logging.DEBUG)
 
-
-# add formatter to ch
+# add formatter to fh
 fh.setFormatter(logging.Formatter("%(asctime)s;%(levelname)s;%(message)s",
                               "%Y-%m-%d %H:%M:%S"))
 
-# add ch to logger
+# add fh to logger
 logger.addHandler(fh)
 
 # "application" code
-logger.debug("debug message")
-logger.info("info message")
-logger.warn("warn message")
+logging.debug("debug message")
+logging.info("info message")
 logger.error("error message")
 logger.critical("critical message")
+logging.info(f'Logger start: {os.uname()[1]}')
 
 # quit()
 config = yaml2dict('./configs/default.yaml')
