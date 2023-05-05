@@ -11,6 +11,8 @@ logging.basicConfig(filename='./output.log', level=logging.DEBUG)
 logger.setFormatter(logging.Formatter("%(asctime)s;%(levelname)s;%(message)s",
                               "%Y-%m-%d %H:%M:%S"))
 
+logging.info(f'Logger start: {os.uname()[1]}')
+
 config = yaml2dict('./configs/default.yaml')
 calculator_api = CalculatorAPI(
     "Calculator", calculator_prompt,
