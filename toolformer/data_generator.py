@@ -370,6 +370,8 @@ class DataGenerator(nn.Module):
         for api in self.apis:
             # TODO: add support batch
             prompt = api.prompt_template.format(input=text)
+            print('prompt')
+            print(prompt)
             prompt_ids = self.tokenizer(prompt, return_tensors="pt")["input_ids"][0].to(self.device)
         
             # sampling positions
