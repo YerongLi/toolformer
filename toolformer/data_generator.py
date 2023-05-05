@@ -394,6 +394,9 @@ class DataGenerator(nn.Module):
         
             # sampling positions
             api_start_idxs, generated_ids = self.sample_api_position(prompt_ids)
+            logging.info('api_start_idxs, generated_ids')
+            logging.info(api_start_idxs)
+            logging.info(generated_ids)
             
             # obtaining api responses
             logging.info('prompt_ids.get_device()')
