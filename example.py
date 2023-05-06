@@ -42,6 +42,7 @@ calculator_api = CalculatorAPI(
 
 model = AutoModelForCausalLM.from_pretrained("bigscience/bloom-560m")
 tokenizer = AutoTokenizer.from_pretrained("bigscience/bloom-560m")
+logging.info(model.device)
 
 # model = AutoModelForCausalLM.from_pretrained("EleutherAI/gpt-j-6B", revision="float16", torch_dtype=torch.float16, low_cpu_mem_usage=True)
 # tokenizer = AutoTokenizer.from_pretrained("EleutherAI/gpt-j-6B")
