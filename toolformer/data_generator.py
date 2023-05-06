@@ -82,9 +82,13 @@ class DataGenerator(nn.Module):
                     input_ids=prompt_and_generated_ids.unsqueeze(0),
                 ).logits
                 last_logit = logits[0, -1, :]
-                logging.info('logits')
-                logging.info(logits.shape)
-                logging.info(last_logit.shape)
+                # logging.info('logits')
+                # logging.info(logits.shape)
+                # logging.info(last_logit.shape)
+                # 2023-05-05 22:18:08 INFO     logits
+                # 2023-05-05 22:18:08 INFO     torch.Size([1, 236, 250880])
+                # 2023-05-05 22:18:08 INFO     torch.Size([250880])
+
                 probs = torch.softmax(last_logit, dim=-1)
                 api_start_prob = probs[self.api_start_token_id]
                 
