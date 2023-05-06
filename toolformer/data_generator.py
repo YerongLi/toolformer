@@ -102,6 +102,9 @@ class DataGenerator(nn.Module):
                 # next_token = torch.multinomial(probs, num_samples=1)
                 next_token = torch.argmax(probs, dim=-1)
                 next_token = next_token.unsqueeze(0)
+
+                logging.info('next_token')
+                logging.info(self.tokenizer.decode(next_token))
                 
                 prompt_and_generated_ids = torch.cat([prompt_and_generated_ids, next_token], dim=0)
                 generated_ids = torch.cat([generated_ids, next_token], dim=0)
