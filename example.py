@@ -51,6 +51,8 @@ logging.info('Finishing loading from AutoModelForCausalLM')
 text = "From this, we have 10 - 5 minutes = 5 minutes."
 apis = [calculator_api]
 generator = DataGenerator(config, model, tokenizer, apis=apis)
+logging.info('generator.device')
+logging.info(generator.device)
 
 augumented_text_ids = generator.generate(text)
 
