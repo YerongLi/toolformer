@@ -103,8 +103,48 @@ class DataGenerator(nn.Module):
                 next_token = torch.argmax(probs, dim=-1)
                 next_token = next_token.unsqueeze(0)
 
-                logging.info('next_token')
-                logging.info(self.tokenizer.decode(next_token))
+                # logging.info('next_token')
+                # logging.info(self.tokenizer.decode(next_token))
+                # 2023-05-05 22:44:07 INFO     next_token
+                # 2023-05-05 22:44:07 INFO     From
+                # 2023-05-05 22:44:07 INFO     next_token
+                # 2023-05-05 22:44:07 INFO      this
+                # 2023-05-05 22:44:07 INFO     next_token
+                # 2023-05-05 22:44:07 INFO     ,
+                # 2023-05-05 22:44:07 INFO     next_token
+                # 2023-05-05 22:44:07 INFO      we
+                # 2023-05-05 22:44:07 INFO     next_token
+                # 2023-05-05 22:44:07 INFO      have
+                # 2023-05-05 22:44:07 INFO     next_token
+                # 2023-05-05 22:44:07 INFO      10
+                # 2023-05-05 22:44:07 INFO     next_token
+                # 2023-05-05 22:44:07 INFO      -
+                # 2023-05-05 22:44:07 INFO     next_token
+                # 2023-05-05 22:44:07 INFO      5
+                # 2023-05-05 22:44:07 INFO     next_token
+                # 2023-05-05 22:44:07 INFO      minutes
+                # 2023-05-05 22:44:07 INFO     next_token
+                # 2023-05-05 22:44:07 INFO      =
+                # 2023-05-05 22:44:07 INFO     next_token
+                # 2023-05-05 22:44:07 INFO      [
+                # 2023-05-05 22:44:07 INFO     next_token
+                # 2023-05-05 22:44:07 INFO     Calcul
+                # 2023-05-05 22:44:07 INFO     next_token
+                # 2023-05-05 22:44:07 INFO     ator
+                # 2023-05-05 22:44:07 INFO     next_token
+                # 2023-05-05 22:44:07 INFO     (
+                # 2023-05-05 22:44:07 INFO     next_token
+                # 2023-05-05 22:44:07 INFO     10
+                # 2023-05-05 22:44:07 INFO     next_token
+                # 2023-05-05 22:44:07 INFO      -
+                # 2023-05-05 22:44:07 INFO     next_token
+                # 2023-05-05 22:44:07 INFO      5
+                # 2023-05-05 22:44:07 INFO     next_token
+                # 2023-05-05 22:44:07 INFO     )
+                # 2023-05-05 22:44:07 INFO     next_token
+                # 2023-05-05 22:44:07 INFO     ]
+                # 2023-05-05 22:44:07 INFO     next_token
+
                 
                 prompt_and_generated_ids = torch.cat([prompt_and_generated_ids, next_token], dim=0)
                 generated_ids = torch.cat([generated_ids, next_token], dim=0)
