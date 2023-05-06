@@ -81,9 +81,10 @@ class DataGenerator(nn.Module):
                 logits = self.model(
                     input_ids=prompt_and_generated_ids.unsqueeze(0),
                 ).logits
+                last_logit = logits[0, -1, :]
                 logging.info('logits')
                 logging.info(logits)
-                last_logit = logits[0, -1, :]
+                logging.info(last_logit)
                 probs = torch.softmax(last_logit, dim=-1)
                 api_start_prob = probs[self.api_start_token_id]
                 
