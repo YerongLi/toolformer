@@ -63,9 +63,12 @@ class DataGenerator(nn.Module):
         TensorType["seq_len"] # The generated text
     ]:
         """Sampling API positions."""
+        """
+
+        """
         # TODO: add support batch
         # the ids of the prompt and generated_ids
-        prompt_and_generated_ids = prompt_ids.to(self.device)
+        prompt_and_generated_ids = prompt_ids
         # only the ids of the generated_ids
         generated_ids = torch.tensor([]).to(self.device)
         i = torch.tensor([0]).to(self.device)

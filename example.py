@@ -57,3 +57,6 @@ print(tokenizer.decode(augumented_text_ids[0][0], skip_special_tokens=True))
 
 # gpt-j-6B
 # From this, we have 10 - 5 minutes = [Calculator(10 - 5)] 5 minutes.
+
+# bigscience/bloom-560m
+# From this, we have 10 - 5 minutes = [Calculator(10 - 5)] 5 minutes.
