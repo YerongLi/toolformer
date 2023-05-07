@@ -62,3 +62,8 @@ print(tokenizer.decode(augumented_text_ids[0][0], skip_special_tokens=True))
 
 # bigscience/bloom-560m
 # From this, we have 10 - 5 minutes = [Calculator(10 - 5)] 5 minutes.
+
+text = "In sum, we have 10 + 5 hours = 15 hours left."
+
+augumented_text_ids = generator.generate(text)
+print(tokenizer.decode(augumented_text_ids[0][0], skip_special_tokens=True))
