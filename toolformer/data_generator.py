@@ -258,6 +258,7 @@ class DataGenerator(nn.Module):
         candidate_ids = candidate_ids[:, PROMPT_LENGTH:]
         logging.info('candidate_ids')
         logging.info(candidate_ids)
+        logging.info(self.tokenizer.decode(candidate_ids))
         return candidate_ids
     
     def _generate_conditioning_prompts(
