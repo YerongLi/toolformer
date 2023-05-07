@@ -306,8 +306,10 @@ class DataGenerator(nn.Module):
             text = self.tokenizer.decode(text_ids, skip_special_tokens=True)
             
             api_request_content = extract_api_request_content(text, api_name=API_NAME)
-            logging.info('api_request_content')
-            logging.info(api_request_content)
+            # logging.info('api_request_content')
+            # logging.info(api_request_content)
+            # 2023-05-07 15:25:45 INFO     api_request_content
+            # 2023-05-07 15:25:45 INFO     10 - 5
             api_response = api(api_request_content)
             api_response_ids = self.tokenizer(api_response, return_tensors="pt")["input_ids"][0].to(self.device)
             # Format: "-> [api_response]"
@@ -368,7 +370,8 @@ class DataGenerator(nn.Module):
         candidate_ids: TensorType["n_positions", "seq_len"]
     ):
         conditioning_api_ids = self._generate_conditioning_prompts(api, candidate_ids)
-                
+        logging.info('conditioning_api_ids')
+        logging.info(conditioning_api_ids)         
         SPACE_TOKEN = self.tokenizer(". ", return_tensors="pt")["input_ids"][0]
         API_LENGTH = 100
         augmented_text_ids = {"api_start_positions": {}}
