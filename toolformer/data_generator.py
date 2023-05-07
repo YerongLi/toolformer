@@ -306,6 +306,8 @@ class DataGenerator(nn.Module):
             text = self.tokenizer.decode(text_ids, skip_special_tokens=True)
             
             api_request_content = extract_api_request_content(text, api_name=API_NAME)
+            logging.info('api_request_content')
+            logging.info(api_request_content)
             api_response = api(api_request_content)
             api_response_ids = self.tokenizer(api_response, return_tensors="pt")["input_ids"][0].to(self.device)
             # Format: "-> [api_response]"
