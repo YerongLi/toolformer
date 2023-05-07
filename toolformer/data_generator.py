@@ -338,8 +338,12 @@ class DataGenerator(nn.Module):
                 "... -> 1 ..."
             )
             logging.info('padded_api_with_response')
-            logging.info(self.tokenizer.decode(padded_api_without_response.squeeze()))
-            logging.info(self.tokenizer.decode(padded_api_with_response.squeeze()))
+            # logging.info(self.tokenizer.decode(padded_api_without_response.squeeze()))
+            # logging.info(self.tokenizer.decode(padded_api_with_response.squeeze()))
+            # 2023-05-07 17:38:08 INFO     padded_api_with_response
+            # 2023-05-07 17:38:08 INFO     <pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>[Calculator(10 - 5)<E2><86><92>]
+            # 2023-05-07 17:38:08 INFO     <pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+            # <pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>[Calculator(10 - 5)<E2><86><92>5]
             padded_api_call = torch.cat([
                 padded_api_without_response,
                 padded_api_with_response
@@ -347,7 +351,8 @@ class DataGenerator(nn.Module):
             padded_api_call = rearrange(padded_api_call, "... -> 1 ...")
             
             conditioning_api_ids = torch.cat([conditioning_api_ids, padded_api_call], dim=0).long()
-                    
+            logging.info('conditioning_api_ids')
+            logging.info(self.tokenizer.decode(conditioning_api_ids.squeeze()))
         return conditioning_api_ids
 
     def _filter_candidate_by_threshold(
