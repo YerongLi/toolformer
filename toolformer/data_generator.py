@@ -225,7 +225,7 @@ class DataGenerator(nn.Module):
                 rearrange(padded_text_ids, "... -> 1 ...")
             ])
         logging.info('pre_api_ids')
-        logging.info(self.tokenizer.decode(pre_api_ids))
+        logging.info(pre_api_ids)
         
         PROMPT_LENGTH = len(prompt_ids)
         
