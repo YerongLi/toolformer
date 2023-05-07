@@ -190,7 +190,9 @@ class DataGenerator(nn.Module):
     ) -> TensorType["n_positions", "seq_len"]:
         
         MAX_PAD = 50
-        
+        logging.info('prompt_ids, generated_ids')
+        logging.info(self.tokenizer.decode(prompt_ids))
+        logging.info(self.tokenizer.decode(generated_ids))
         # the ids before the start of an api call
         pre_api_ids = torch.tensor([]).to(self.device)
 
@@ -487,15 +489,26 @@ class DataGenerator(nn.Module):
             # logging.info('prompt_ids.get_device()')
             # logging.info(prompt_ids.get_device())
             candidate_ids = self.obtain_api_response(prompt_ids, api_start_idxs, generated_ids)
-            logging.info('candidate_ids')
-            logging.info(candidate_ids)
+            # logging.info('candidate_ids')
+            # logging.info(candidate_ids)
+            # 2023-05-06 21:46:52 INFO     candidate_ids
+            # 2023-05-06 21:46:52 INFO     tensor([[     3,      3,      3,      3,      3,      3,      3,      3,      3,
+            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
+            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
+            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
+            #               3,      3,      3,  12620,   1119,     15,   1701,   1542,   1581,
+            #             647,    973,  17405,    564,   1111, 120009,   2623,     11,   1416,
+            #             647,    973,     12,     64,    973,  17405,   6149]],
+            #        device='cuda:0')
+
             # filtering
             text_ids = self.tokenizer(text, return_tensors="pt")["input_ids"][0]
-            logging.info('Finish filtering')
             del prompt_ids, generated_ids, prompt
             # return prompt_ids, api_start_idxs, generated_ids, candidate_ids, text_ids
             torch.cuda.empty_cache()
             filtered_candidate_ids = self.filter_api(api, text_ids, api_start_idxs, candidate_ids)
+            logging.info('Finish filtering')
+
             # logging.info('filtered_candidate_ids')        
             # logging.info(filtered_candidate_ids)
             #     2023-05-05 01:22:37 INFO     filtered_candidate_ids
