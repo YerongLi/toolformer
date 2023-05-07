@@ -256,9 +256,20 @@ class DataGenerator(nn.Module):
         # filter out the prompt template
         # only keep the generated ids
         candidate_ids = candidate_ids[:, PROMPT_LENGTH:]
-        logging.info('candidate_ids')
-        logging.info(candidate_ids)
-        logging.info(self.tokenizer.decode(candidate_ids[0]))
+        # logging.info('candidate_ids')
+        # logging.info(candidate_ids)
+        # logging.info(self.tokenizer.decode(candidate_ids[0]))
+        # 2023-05-06 22:22:43 INFO     candidate_ids
+        # 2023-05-06 22:22:43 INFO     tensor([[     3,      3,      3,      3,      3,      3,      3,      3,      3,
+        #               3,      3,      3,      3,      3,      3,      3,      3,      3,
+        #               3,      3,      3,      3,      3,      3,      3,      3,      3,
+        #               3,      3,      3,      3,      3,      3,      3,      3,      3,
+        #               3,      3,      3,  12620,   1119,     15,   1701,   1542,   1581,
+        #             647,    973,  17405,    564,   1111, 120009,   2623,     11,   1416,
+        #             647,    973,     12,     64,    973,  17405,   6149]],
+        #        device='cuda:0')
+        # 2023-05-06 22:23:52 INFO     <pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>From this, we have 10 - 5 minutes = [Calculator(10 - 5)] 5 minutes.
+
         return candidate_ids
     
     def _generate_conditioning_prompts(
