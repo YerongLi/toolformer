@@ -352,7 +352,7 @@ class DataGenerator(nn.Module):
             
             conditioning_api_ids = torch.cat([conditioning_api_ids, padded_api_call], dim=0).long()
             logging.info('conditioning_api_ids')
-            logging.info(self.tokenizer.decode(conditioning_api_ids.squeeze()))
+            logging.info(self.tokenizer.decode(conditioning_api_ids.squeeze().squeeze()))
         return conditioning_api_ids
 
     def _filter_candidate_by_threshold(
