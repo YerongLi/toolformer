@@ -314,9 +314,11 @@ class DataGenerator(nn.Module):
             api_response_ids = self.tokenizer(api_response, return_tensors="pt")["input_ids"][0].to(self.device)
             # Format: "-> [api_response]"
             api_response_with_arrow_ids = torch.cat([self.api_output_token_id, api_response_ids], dim=0)
-            logging.info('api_response_with_arrow_ids')
-            logging.info(self.tokenizer.decode(api_response_with_arrow_ids))
-            
+            # logging.info('api_response_with_arrow_ids')
+            # logging.info(self.tokenizer.decode(api_response_with_arrow_ids))
+            # 2023-05-07 17:47:46 INFO     api_response_with_arrow_ids
+            # 2023-05-07 17:47:46 INFO     <E2><86><92>5
+
 
             api_syntax = extract_api_syntax(text, api_name=API_NAME)
             # logging.info('api_syntax')
@@ -356,7 +358,8 @@ class DataGenerator(nn.Module):
             conditioning_api_ids = torch.cat([conditioning_api_ids, padded_api_call], dim=0).long()
             logging.info('conditioning_api_ids')
             logging.info(conditioning_api_ids)
-            logging.info(self.tokenizer.decode(conditioning_api_ids.squeeze().squeeze()))
+            logging.info(self.tokenizer.decode(conditioning_api_ids.squeeze()[0]))
+            logging.info(self.tokenizer.decode(conditioning_api_ids.squeeze()[1]))
         return conditioning_api_ids
 
     def _filter_candidate_by_threshold(
