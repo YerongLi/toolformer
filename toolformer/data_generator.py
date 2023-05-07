@@ -314,7 +314,10 @@ class DataGenerator(nn.Module):
             api_response_ids = self.tokenizer(api_response, return_tensors="pt")["input_ids"][0].to(self.device)
             # Format: "-> [api_response]"
             api_response_with_arrow_ids = torch.cat([self.api_output_token_id, api_response_ids], dim=0)
+            logging.info('api_response_with_arrow_ids')
+            logging.info(api_response_with_arrow_ids)
             
+
             api_syntax = extract_api_syntax(text, api_name=API_NAME)
             # logging.info('api_syntax')
             # logging.info(api_syntax)
