@@ -371,7 +371,9 @@ class DataGenerator(nn.Module):
     ):
         conditioning_api_ids = self._generate_conditioning_prompts(api, candidate_ids)
         logging.info('conditioning_api_ids')
-        logging.info(conditioning_api_ids)         
+        logging.info(self.tokenizer.decode(conditioning_api_ids.squeeze()[0]))
+        logging.info(self.tokenizer.decode(conditioning_api_ids.squeeze()[1]))
+
         SPACE_TOKEN = self.tokenizer(". ", return_tensors="pt")["input_ids"][0]
         API_LENGTH = 100
         augmented_text_ids = {"api_start_positions": {}}
