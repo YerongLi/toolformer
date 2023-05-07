@@ -478,11 +478,11 @@ class DataGenerator(nn.Module):
             logging.info('api_start_idxs, generated_ids')
             logging.info(api_start_idxs)
             logging.info(self.tokenizer.decode(generated_ids))
-            INFO:root:api_start_idxs, generated_ids
-            INFO:root:tensor([10])
-            INFO:root:tensor([ 12620,   1119,     15,   1701,   1542,   1581,    647,    973,  17405,
-            564,   1111, 120009,   2623,     11,   1416,    647,    973,     12,
-            64,    973,  17405,   6149])
+            # INFO:root:api_start_idxs, generated_ids
+            # INFO:root:tensor([10])
+            # INFO:root:tensor([ 12620,   1119,     15,   1701,   1542,   1581,    647,    973,  17405,
+            # 564,   1111, 120009,   2623,     11,   1416,    647,    973,     12,
+            # 64,    973,  17405,   6149])
             logging.info('Finish sampling')
 
             # obtaining api responses
