@@ -370,9 +370,14 @@ class DataGenerator(nn.Module):
         candidate_ids: TensorType["n_positions", "seq_len"]
     ):
         conditioning_api_ids = self._generate_conditioning_prompts(api, candidate_ids)
-        logging.info('conditioning_api_ids')
-        logging.info(self.tokenizer.decode(conditioning_api_ids.squeeze()[0]))
-        logging.info(self.tokenizer.decode(conditioning_api_ids.squeeze()[1]))
+        # logging.info('conditioning_api_ids')
+        # logging.info(self.tokenizer.decode(conditioning_api_ids.squeeze()[0]))
+        # logging.info(self.tokenizer.decode(conditioning_api_ids.squeeze()[1]))
+        # 2023-05-07 16:40:08 INFO     conditioning_api_ids
+        # 2023-05-07 16:40:08 INFO     <pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+        # <pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>[Calculator(10 - 5)<E2><86><92>]
+        # 2023-05-07 16:40:08 INFO     <pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+        # <pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>[Calculator(10 - 5)<E2><86><92>5]
 
         SPACE_TOKEN = self.tokenizer(". ", return_tensors="pt")["input_ids"][0]
         API_LENGTH = 100
