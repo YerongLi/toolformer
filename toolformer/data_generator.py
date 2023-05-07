@@ -224,9 +224,18 @@ class DataGenerator(nn.Module):
                 pre_api_ids,
                 rearrange(padded_text_ids, "... -> 1 ...")
             ])
-        logging.info('pre_api_ids')
-        logging.info(pre_api_ids)
-        
+        # logging.info('pre_api_ids')
+        # logging.info(pre_api_ids)
+        # 2023-05-06 22:19:03 INFO     tensor([[3.0000e+00, 3.0000e+00, 3.0000e+00, 3.0000e+00, 3.0000e+00, 3.0000e+00,
+        #  3.0000e+00, 3.0000e+00, 3.0000e+00, 3.0000e+00, 3.0000e+00, 3.0000e+00,
+        #  3.0000e+00, 3.0000e+00, 3.0000e+00, 3.0000e+00, 3.0000e+00, 3.0000e+00,
+        #  3.0000e+00, 3.0000e+00, 3.0000e+00, 3.0000e+00, 3.0000e+00, 3.0000e+00,
+        #  3.0000e+00, 3.0000e+00, 3.0000e+00, 3.0000e+00, 3.0000e+00, 3.0000e+00,
+        #  3.0000e+00, 3.0000e+00, 3.0000e+00, 3.0000e+00, 3.0000e+00, 3.0000e+00,
+        #  3.0000e+00, 3.0000e+00, 3.0000e+00, 1.2620e+04, 1.1190e+03, 1.5000e+01,
+        #  1.7010e+03, 1.5420e+03, 1.5810e+03, 6.4700e+02, 9.7300e+02, 1.7405e+04,
+        #  5.6400e+02, 1.1110e+03]], device='cuda:0')
+
         PROMPT_LENGTH = len(prompt_ids)
         
         # TODO: optimzie this
@@ -247,7 +256,8 @@ class DataGenerator(nn.Module):
         # filter out the prompt template
         # only keep the generated ids
         candidate_ids = candidate_ids[:, PROMPT_LENGTH:]
-        
+        logging.info('candidate_ids')
+        logging.info(candidate_ids)
         return candidate_ids
     
     def _generate_conditioning_prompts(
