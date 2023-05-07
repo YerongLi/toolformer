@@ -320,7 +320,7 @@ class DataGenerator(nn.Module):
             # logging.info(api_syntax)
             # 2023-05-07 16:45:06 INFO     api_syntax
             # 2023-05-07 16:45:06 INFO     ['[Calculator(10 - 5)]']
-            
+
             api_syntax_ids = self.tokenizer(api_syntax, return_tensors="pt")["input_ids"][0].to(self.device)
             # logging.info('device')
             # logging.info(api_syntax_ids[:-1].get_device())
@@ -337,7 +337,9 @@ class DataGenerator(nn.Module):
                 F.pad(api_syntax_with_response_ids, pad=((MAX_PAD - api_syntax_with_response_ids.shape[-1]), 0), value=self.pad_token_id),
                 "... -> 1 ..."
             )
-        
+            logging.info('padded_api_with_response')
+            logging.info(padded_api_without_response)
+            logging.info(padded_api_with_response)
             padded_api_call = torch.cat([
                 padded_api_without_response,
                 padded_api_with_response
