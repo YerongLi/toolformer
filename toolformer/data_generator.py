@@ -475,21 +475,20 @@ class DataGenerator(nn.Module):
             # sampling positions
             logging.info('Start sampling')
             api_start_idxs, generated_ids = self.sample_api_position(prompt_ids)
-            logging.info('api_start_idxs, generated_ids')
-            logging.info(api_start_idxs)
-            logging.info(self.tokenizer.decode(generated_ids))
-            # INFO:root:api_start_idxs, generated_ids
-            # INFO:root:tensor([10])
-            # INFO:root:tensor([ 12620,   1119,     15,   1701,   1542,   1581,    647,    973,  17405,
-            # 564,   1111, 120009,   2623,     11,   1416,    647,    973,     12,
-            # 64,    973,  17405,   6149])
+            # logging.info('api_start_idxs, generated_ids')
+            # logging.info(api_start_idxs)
+            # logging.info(self.tokenizer.decode(generated_ids))
+            # 2023-05-06 21:42:28 INFO     api_start_idxs, generated_ids
+            # 2023-05-06 21:42:28 INFO     tensor([10], device='cuda:0')
+            # 2023-05-06 21:42:28 INFO     From this, we have 10 - 5 minutes = [Calculator(10 - 5)] 5 minutes.
             logging.info('Finish sampling')
 
             # obtaining api responses
             # logging.info('prompt_ids.get_device()')
             # logging.info(prompt_ids.get_device())
             candidate_ids = self.obtain_api_response(prompt_ids, api_start_idxs, generated_ids)
-
+            logging.info('candidate_ids')
+            logging.info(candidate_ids)
             # filtering
             text_ids = self.tokenizer(text, return_tensors="pt")["input_ids"][0]
             logging.info('Finish filtering')
