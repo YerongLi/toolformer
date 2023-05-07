@@ -68,8 +68,26 @@ class DataGenerator(nn.Module):
         """
         # TODO: add support batch
         # the ids of the prompt and generated_ids
-        logging.info('prompt_ids')
-        logging.info(self.tokenizer.decode(prompt_ids))
+        # logging.info('prompt_ids')
+        # logging.info(self.tokenizer.decode(prompt_ids))
+        # 2023-05-06 21:27:23 INFO     prompt_ids
+        # 2023-05-06 21:27:23 INFO     
+        # Your task is to add calls to a Calculator API to a piece of text. The API call should help you get information required to complete the text. 
+
+        # You can call the API by writing "Calculator(operation)!" where "operation" is the type of calculation you want to perform. Here are some examples of API calls:
+
+        # Input: John has 5 apples and his friend gave him 3 more. John now has 8 apples.
+        # Ouput: John has 5 apples and his friend gave him 3 more. John now has [Calculator("5 + 3")] 8 apples.
+
+        # Input: Jane needs to divide 24 pieces of candy equally among 6 kids. Each kid will get 4 pieces of candy.
+        # Output: Jane needs to divide 24 pieces of candy equally among 6 kids. Each kid will get [Calculator(24 / 6)] 4 pieces of candy.
+
+        # Input: From this, we have 4 * 30 minutes = 120 minutes.
+        # Output: From this, we have 4 * 30 minutes = [Calculator(4 * 30)] 120 minutes.
+
+        # Input: From this, we have 10 - 5 minutes = 5 minutes.
+        # Output:
+
         prompt_and_generated_ids = prompt_ids
         # only the ids of the generated_ids
         generated_ids = torch.tensor([]).to(self.device)
@@ -457,14 +475,14 @@ class DataGenerator(nn.Module):
             # sampling positions
             logging.info('Start sampling')
             api_start_idxs, generated_ids = self.sample_api_position(prompt_ids)
-            # logging.info('api_start_idxs, generated_ids')
-            # logging.info(api_start_idxs)
-            # logging.info(generated_ids)
-            # INFO:root:api_start_idxs, generated_ids
-            # INFO:root:tensor([10])
-            # INFO:root:tensor([ 12620,   1119,     15,   1701,   1542,   1581,    647,    973,  17405,
-            # 564,   1111, 120009,   2623,     11,   1416,    647,    973,     12,
-            # 64,    973,  17405,   6149])
+            logging.info('api_start_idxs, generated_ids')
+            logging.info(api_start_idxs)
+            logging.info(self.tokenizer.decode(generated_ids))
+            INFO:root:api_start_idxs, generated_ids
+            INFO:root:tensor([10])
+            INFO:root:tensor([ 12620,   1119,     15,   1701,   1542,   1581,    647,    973,  17405,
+            564,   1111, 120009,   2623,     11,   1416,    647,    973,     12,
+            64,    973,  17405,   6149])
             logging.info('Finish sampling')
 
             # obtaining api responses
