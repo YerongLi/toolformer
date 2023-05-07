@@ -190,9 +190,29 @@ class DataGenerator(nn.Module):
     ) -> TensorType["n_positions", "seq_len"]:
         
         MAX_PAD = 50
-        logging.info('prompt_ids, generated_ids')
-        logging.info(self.tokenizer.decode(prompt_ids))
-        logging.info(self.tokenizer.decode(generated_ids))
+        # logging.info('prompt_ids, generated_ids')
+        # logging.info(self.tokenizer.decode(prompt_ids))
+        # logging.info(self.tokenizer.decode(generated_ids))
+        # 2023-05-06 22:12:34 INFO     prompt_ids, generated_ids
+        # 2023-05-06 22:12:34 INFO     
+        # Your task is to add calls to a Calculator API to a piece of text. The API call should help you get information required to complete the text. 
+
+        # You can call the API by writing "Calculator(operation)!" where "operation" is the type of calculation you want to perform. Here are some examples of API calls:
+
+        # Input: John has 5 apples and his friend gave him 3 more. John now has 8 apples.
+        # Ouput: John has 5 apples and his friend gave him 3 more. John now has [Calculator("5 + 3")] 8 apples.
+
+        # Input: Jane needs to divide 24 pieces of candy equally among 6 kids. Each kid will get 4 pieces of candy.
+        # Output: Jane needs to divide 24 pieces of candy equally among 6 kids. Each kid will get [Calculator(24 / 6)] 4 pieces of candy.
+
+        # Input: From this, we have 4 * 30 minutes = 120 minutes.
+        # Output: From this, we have 4 * 30 minutes = [Calculator(4 * 30)] 120 minutes.
+
+        # Input: From this, we have 10 - 5 minutes = 5 minutes.
+        # Output:
+
+        # 2023-05-06 22:12:34 INFO     From this, we have 10 - 5 minutes = [Calculator(10 - 5)] 5 minutes.
+        
         # the ids before the start of an api call
         pre_api_ids = torch.tensor([]).to(self.device)
 
@@ -204,6 +224,8 @@ class DataGenerator(nn.Module):
                 pre_api_ids,
                 rearrange(padded_text_ids, "... -> 1 ...")
             ])
+        logging.info('pre_api_ids')
+        logging.info(pre_api_ids)
         
         PROMPT_LENGTH = len(prompt_ids)
         
