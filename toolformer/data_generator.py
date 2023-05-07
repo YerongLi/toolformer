@@ -68,6 +68,8 @@ class DataGenerator(nn.Module):
         """
         # TODO: add support batch
         # the ids of the prompt and generated_ids
+        logging.info('prompt_ids')
+        logging.info(self.tokenizer.decode(prompt_ids))
         prompt_and_generated_ids = prompt_ids
         # only the ids of the generated_ids
         generated_ids = torch.tensor([]).to(self.device)
@@ -91,7 +93,7 @@ class DataGenerator(nn.Module):
 
                 probs = torch.softmax(last_logit, dim=-1)
                 api_start_prob = probs[self.api_start_token_id]
-                
+                # If api_start_prob is greater than the threshould append it to api_start_prob
                 if api_start_prob > self.sampling_threshold:
                     api_pos_probs = torch.cat([
                         api_pos_probs,
@@ -144,7 +146,6 @@ class DataGenerator(nn.Module):
                 # 2023-05-05 22:44:07 INFO     next_token
                 # 2023-05-05 22:44:07 INFO     ]
                 # 2023-05-05 22:44:07 INFO     next_token
-
                 
                 prompt_and_generated_ids = torch.cat([prompt_and_generated_ids, next_token], dim=0)
                 generated_ids = torch.cat([generated_ids, next_token], dim=0)
