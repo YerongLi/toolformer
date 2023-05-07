@@ -338,8 +338,8 @@ class DataGenerator(nn.Module):
                 "... -> 1 ..."
             )
             logging.info('padded_api_with_response')
-            logging.info(padded_api_without_response)
-            logging.info(padded_api_with_response)
+            logging.info(self.tokenizer.decode(padded_api_without_response))
+            logging.info(self.tokenizer.decode(padded_api_with_response))
             padded_api_call = torch.cat([
                 padded_api_without_response,
                 padded_api_with_response
