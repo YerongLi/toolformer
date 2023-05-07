@@ -315,7 +315,7 @@ class DataGenerator(nn.Module):
             # Format: "-> [api_response]"
             api_response_with_arrow_ids = torch.cat([self.api_output_token_id, api_response_ids], dim=0)
             logging.info('api_response_with_arrow_ids')
-            logging.info(api_response_with_arrow_ids)
+            logging.info(self.tokenizer.decode(api_response_with_arrow_ids))
             
 
             api_syntax = extract_api_syntax(text, api_name=API_NAME)
@@ -355,6 +355,7 @@ class DataGenerator(nn.Module):
             
             conditioning_api_ids = torch.cat([conditioning_api_ids, padded_api_call], dim=0).long()
             logging.info('conditioning_api_ids')
+            logging.info(conditioning_api_ids)
             logging.info(self.tokenizer.decode(conditioning_api_ids.squeeze().squeeze()))
         return conditioning_api_ids
 
