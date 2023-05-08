@@ -413,9 +413,36 @@ class DataGenerator(nn.Module):
             return max(0, 1-0.2*t)
         
         for idx, api_ids in zip(api_start_idxs, conditioning_api_ids):
-            logging.info('idx, api_ids')
-            logging.info(idx)
-            logging.info(api_ids)
+            # logging.info('idx, api_ids')
+            # logging.info(idx)
+            # logging.info(api_ids)
+            # 2023-05-07 21:14:32 INFO     idx, api_ids
+            # 2023-05-07 21:14:32 INFO     tensor(10, device='cuda:0')
+            # 2023-05-07 21:14:32 INFO     tensor([[     3,      3,      3,      3,      3,      3,      3,      3,      3,
+            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
+            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
+            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
+            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
+            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
+            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
+            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
+            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
+            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
+            #              62, 120009,   2623,     11,   1416,    647,    973,     12,  18262,
+            #              64],
+            #         [     3,      3,      3,      3,      3,      3,      3,      3,      3,
+            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
+            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
+            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
+            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
+            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
+            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
+            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
+            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
+            #               3,      3,      3,      3,      3,      3,      3,      3,     62,
+            #          120009,   2623,     11,   1416,    647,    973,     12,  18262,     24,
+            #              64]], device='cuda:0')
+
             idx = idx.item()
             seq_len = len(text_ids)
             augmented_text_ids["api_start_positions"][idx] = {
