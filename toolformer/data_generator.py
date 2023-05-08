@@ -356,10 +356,16 @@ class DataGenerator(nn.Module):
             padded_api_call = rearrange(padded_api_call, "... -> 1 ...")
             
             conditioning_api_ids = torch.cat([conditioning_api_ids, padded_api_call], dim=0).long()
-            logging.info('conditioning_api_ids')
-            logging.info(conditioning_api_ids)
-            logging.info(self.tokenizer.decode(conditioning_api_ids.squeeze()[0]))
-            logging.info(self.tokenizer.decode(conditioning_api_ids.squeeze()[1]))
+            # logging.info('conditioning_api_ids')
+            # logging.info(self.tokenizer.decode(conditioning_api_ids.squeeze()[0]))
+            # logging.info(self.tokenizer.decode(conditioning_api_ids.squeeze()[1]))
+            # 2023-05-07 17:50:52 INFO     <pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pa
+            # d><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+            # <pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><p
+            # ad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>[Calculator(10 - 5)<E2><86><92>]
+            # 2023-05-07 17:50:52 INFO     <pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pa
+            # d><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><p
+            # ad><pad><pad><pad><pad><pad><pad><pad><pad><pad>[Calculator(10 - 5)<E2><86><92>5]
         return conditioning_api_ids
 
     def _filter_candidate_by_threshold(
@@ -407,6 +413,9 @@ class DataGenerator(nn.Module):
             return max(0, 1-0.2*t)
         
         for idx, api_ids in zip(api_start_idxs, conditioning_api_ids):
+            logging.info('idx, api_ids')
+            logging.info(idx)
+            logging.info(api_ids)
             idx = idx.item()
             seq_len = len(text_ids)
             augmented_text_ids["api_start_positions"][idx] = {
