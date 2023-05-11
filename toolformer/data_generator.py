@@ -413,11 +413,14 @@ class DataGenerator(nn.Module):
             return max(0, 1-0.2*t)
         
         for idx, api_ids in zip(api_start_idxs, conditioning_api_ids):
-            logging.info('idx, api_ids')
-            logging.info(idx)
-            logging.info(self.tokenizer.decode(api_ids[0]))
-            logging.info(self.tokenizer.decode(api_ids[1]))
-
+            # logging.info('idx, api_ids')
+            # logging.info(idx)
+            # logging.info(self.tokenizer.decode(api_ids[0]))
+            # logging.info(self.tokenizer.decode(api_ids[1]))
+            # 2023-05-11 15:52:26 INFO     idx, api_ids
+            # 2023-05-11 15:52:26 INFO     tensor(10, device='cuda:0')
+            # 2023-05-11 15:52:26 INFO     <pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>[Calculator(10 - 5)<E2><86><92>]
+            # 2023-05-11 15:52:26 INFO     <pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>[Calculator(10 - 5)<E2><86><92>5]
 
             idx = idx.item()
             seq_len = len(text_ids)
@@ -438,9 +441,8 @@ class DataGenerator(nn.Module):
 
 
                 conditioning_text_ids = text_ids[:j].to(self.device)
-                # logging.info(api_ids[0].get_device())
-                # logging.info(SPACE_TOKEN.get_device())
-                # logging.info(conditioning_text_ids.get_device())
+                logging.info('conditioning_text_ids')
+                logging.info(self.tokenizer.decode(conditioning_text_ids))
                 api_and_text_ids = torch.stack([
                     F.pad(conditioning_text_ids, pad=(API_LENGTH + len(SPACE_TOKEN), 0), value=self.pad_token_id), # [text_ids]
                     torch.cat([api_ids[0], SPACE_TOKEN.to(self.device), conditioning_text_ids], dim=0), # [api->, text_ids]
