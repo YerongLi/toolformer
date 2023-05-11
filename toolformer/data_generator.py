@@ -413,35 +413,11 @@ class DataGenerator(nn.Module):
             return max(0, 1-0.2*t)
         
         for idx, api_ids in zip(api_start_idxs, conditioning_api_ids):
-            # logging.info('idx, api_ids')
-            # logging.info(idx)
-            # logging.info(api_ids)
-            # 2023-05-07 21:14:32 INFO     idx, api_ids
-            # 2023-05-07 21:14:32 INFO     tensor(10, device='cuda:0')
-            # 2023-05-07 21:14:32 INFO     tensor([[     3,      3,      3,      3,      3,      3,      3,      3,      3,
-            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
-            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
-            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
-            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
-            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
-            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
-            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
-            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
-            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
-            #              62, 120009,   2623,     11,   1416,    647,    973,     12,  18262,
-            #              64],
-            #         [     3,      3,      3,      3,      3,      3,      3,      3,      3,
-            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
-            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
-            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
-            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
-            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
-            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
-            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
-            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
-            #               3,      3,      3,      3,      3,      3,      3,      3,     62,
-            #          120009,   2623,     11,   1416,    647,    973,     12,  18262,     24,
-            #              64]], device='cuda:0')
+            logging.info('idx, api_ids')
+            logging.info(idx)
+            logging.info(self.tokenizer.decode(api_ids[0]))
+            logging.info(self.tokenizer.decode(api_ids[1]))
+
 
             idx = idx.item()
             seq_len = len(text_ids)
@@ -603,14 +579,9 @@ class DataGenerator(nn.Module):
             # logging.info('candidate_ids')
             # logging.info(self.tokenizer.decode(candidate_ids.squeeze()))
             # 2023-05-06 21:46:52 INFO     candidate_ids
-            # 2023-05-06 21:46:52 INFO     tensor([[     3,      3,      3,      3,      3,      3,      3,      3,      3,
-            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
-            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
-            #               3,      3,      3,      3,      3,      3,      3,      3,      3,
-            #               3,      3,      3,  12620,   1119,     15,   1701,   1542,   1581,
-            #             647,    973,  17405,    564,   1111, 120009,   2623,     11,   1416,
-            #             647,    973,     12,     64,    973,  17405,   6149]],
-            #        device='cuda:0')
+
+            
+     
             # 2023-05-11 15:24:50 INFO     <pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>From this, we have 10 - 5 minutes = [Calculator(10 - 5)] 5 minutes.
 
             # filtering
@@ -621,10 +592,18 @@ class DataGenerator(nn.Module):
             filtered_candidate_ids = self.filter_api(api, text_ids, api_start_idxs, candidate_ids)
             logging.info('Finish filtering')
 
-            logging.info('filtered_candidate_ids')        
+            # logging.info('filtered_candidate_ids')        
             # logging.info(filtered_candidate_ids)
-            logging.info(self.tokenizer.decode(filtered_candidate_ids.squeeze()))
+            # logging.info(self.tokenizer.decode(filtered_candidate_ids.squeeze()))
+            # 2023-05-11 15:30:07 INFO     filtered_candidate_ids
             
+            # 2023-05-11 15:30:06 INFO     <pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pa
+            # d><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>From this, we have 10 - 5 minutes = [Calculator(10 - 5)] 5 m
+            # inutes.
+
+            # 2023-05-11 15:30:07 INFO     <pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pa
+            # d><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>In sum, we have 10 + 5 hours = [Calculator(10 + 5)] 15 hours left.
+
             #     2023-05-05 01:22:37 INFO     filtered_candidate_ids
             # 2023-05-05 01:22:37 INFO     tensor([[     3,      3,      3,      3,      3,      3,      3,      3,      3,
             #               3,      3,      3,      3,      3,      3,      3,      3,      3,
