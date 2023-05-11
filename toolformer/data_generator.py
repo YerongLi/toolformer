@@ -600,8 +600,8 @@ class DataGenerator(nn.Module):
             # logging.info('prompt_ids.get_device()')
             # logging.info(prompt_ids.get_device())
             candidate_ids = self.obtain_api_response(prompt_ids, api_start_idxs, generated_ids)
-            logging.info('candidate_ids')
-            logging.info(self.tokenizer.decode(candidate_ids.squeeze()))
+            # logging.info('candidate_ids')
+            # logging.info(self.tokenizer.decode(candidate_ids.squeeze()))
             # 2023-05-06 21:46:52 INFO     candidate_ids
             # 2023-05-06 21:46:52 INFO     tensor([[     3,      3,      3,      3,      3,      3,      3,      3,      3,
             #               3,      3,      3,      3,      3,      3,      3,      3,      3,
@@ -611,6 +611,7 @@ class DataGenerator(nn.Module):
             #             647,    973,  17405,    564,   1111, 120009,   2623,     11,   1416,
             #             647,    973,     12,     64,    973,  17405,   6149]],
             #        device='cuda:0')
+            # 2023-05-11 15:24:50 INFO     <pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>From this, we have 10 - 5 minutes = [Calculator(10 - 5)] 5 minutes.
 
             # filtering
             text_ids = self.tokenizer(text, return_tensors="pt")["input_ids"][0]
@@ -620,8 +621,10 @@ class DataGenerator(nn.Module):
             filtered_candidate_ids = self.filter_api(api, text_ids, api_start_idxs, candidate_ids)
             logging.info('Finish filtering')
 
-            # logging.info('filtered_candidate_ids')        
+            logging.info('filtered_candidate_ids')        
             # logging.info(filtered_candidate_ids)
+            logging.info(self.tokenizer.decode(filtered_candidate_ids.squeeze()))
+            
             #     2023-05-05 01:22:37 INFO     filtered_candidate_ids
             # 2023-05-05 01:22:37 INFO     tensor([[     3,      3,      3,      3,      3,      3,      3,      3,      3,
             #               3,      3,      3,      3,      3,      3,      3,      3,      3,
