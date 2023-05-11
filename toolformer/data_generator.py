@@ -601,7 +601,7 @@ class DataGenerator(nn.Module):
             # logging.info(prompt_ids.get_device())
             candidate_ids = self.obtain_api_response(prompt_ids, api_start_idxs, generated_ids)
             logging.info('candidate_ids')
-            logging.info(self.tokenizer.decode(candidate_ids))
+            logging.info(self.tokenizer.decode(candidate_ids.squeeze()))
             # 2023-05-06 21:46:52 INFO     candidate_ids
             # 2023-05-06 21:46:52 INFO     tensor([[     3,      3,      3,      3,      3,      3,      3,      3,      3,
             #               3,      3,      3,      3,      3,      3,      3,      3,      3,
