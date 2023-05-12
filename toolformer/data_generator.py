@@ -565,8 +565,8 @@ class DataGenerator(nn.Module):
         losses = _calculate_loss(augmented_text_ids)
         filtered_candidate_ids = self._filter_candidate_by_threshold(losses, candidate_ids)
         logging.info('filtered_candidate_ids')
-        logging.info(len(filtered_candidate_ids))
-        logging.info(self.tokenizer.decode(filtered_candidate_ids))
+        logging.info(len(filtered_candidate_ids.squeeze()))
+        logging.info(self.tokenizer.decode(filtered_candidate_ids.squeeze()))
         return filtered_candidate_ids
     
     def generate(
