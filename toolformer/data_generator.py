@@ -444,15 +444,15 @@ class DataGenerator(nn.Module):
 
                 logging.info('conditioning_text_ids')
                 logging.info(self.tokenizer.decode(conditioning_text_ids))
-                2023-05-11 15:59:07 INFO     conditioning_text_ids
-                2023-05-11 15:59:07 INFO     In sum, we have 10 + 5 hours =
-                2023-05-11 15:59:07 INFO     conditioning_text_ids
-                2023-05-11 15:59:07 INFO     In sum, we have 10 + 5 hours = 15
-                2023-05-11 15:59:07 INFO     conditioning_text_ids
-                2023-05-11 15:59:07 INFO     In sum, we have 10 + 5 hours = 15 hours
-                2023-05-11 15:59:07 INFO     conditioning_text_ids
-                2023-05-11 15:59:07 INFO     In sum, we have 10 + 5 hours = 15 hours left
-                2023-05-11 15:59:07 INFO     Finish filtering
+                # 2023-05-11 15:59:07 INFO     conditioning_text_ids
+                # 2023-05-11 15:59:07 INFO     In sum, we have 10 + 5 hours =
+                # 2023-05-11 15:59:07 INFO     conditioning_text_ids
+                # 2023-05-11 15:59:07 INFO     In sum, we have 10 + 5 hours = 15
+                # 2023-05-11 15:59:07 INFO     conditioning_text_ids
+                # 2023-05-11 15:59:07 INFO     In sum, we have 10 + 5 hours = 15 hours
+                # 2023-05-11 15:59:07 INFO     conditioning_text_ids
+                # 2023-05-11 15:59:07 INFO     In sum, we have 10 + 5 hours = 15 hours left
+                # 2023-05-11 15:59:07 INFO     Finish filtering
                 api_and_text_ids = torch.stack([
                     F.pad(conditioning_text_ids, pad=(API_LENGTH + len(SPACE_TOKEN), 0), value=self.pad_token_id), # [text_ids]
                     torch.cat([api_ids[0], SPACE_TOKEN.to(self.device), conditioning_text_ids], dim=0), # [api->, text_ids]
