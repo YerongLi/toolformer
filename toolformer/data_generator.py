@@ -469,8 +469,9 @@ class DataGenerator(nn.Module):
                 }
                 j += 1
                 logging.info('augmented_text_ids')
-                logging.info(api_and_text_ids)
-                logging.info(self.tokenizer.decode(api_and_text_ids))
+                logging.info('len(api_and_text_ids)')
+                logging.info(len(api_and_text_ids))
+                # logging.info(self.tokenizer.decode(api_and_text_ids))
                 logging.info(augmented_text_ids)
         
         def _normalize_weights(augmented_text_ids):
