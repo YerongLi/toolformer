@@ -468,7 +468,7 @@ class DataGenerator(nn.Module):
                     "target_ids": torch.tensor([next_token_ids, next_token_ids, next_token_ids])
                 }
                 j += 1
-                logging.info('augmented_text_ids')
+                # logging.info('augmented_text_ids')
                 # logging.info('len(api_and_text_ids)')
                 # logging.info(len(api_and_text_ids))
                 # 2023-05-11 22:43:30 INFO     augmented_text_ids
@@ -476,11 +476,22 @@ class DataGenerator(nn.Module):
                 # 2023-05-11 22:43:30 INFO     3
 
 
-                logging.info('len(api_and_text_ids)')
-                logging.info(self.tokenizer.decode(api_and_text_ids[0]))
-                logging.info(self.tokenizer.decode(api_and_text_ids[1]))
-                logging.info(self.tokenizer.decode(api_and_text_ids[2]))
-                logging.info(augmented_text_ids)
+                # logging.info('api_and_text_ids')
+                # logging.info(self.tokenizer.decode(api_and_text_ids[0]))
+                # logging.info(self.tokenizer.decode(api_and_text_ids[1]))
+                # logging.info(self.tokenizer.decode(api_and_text_ids[2]))
+                # 2023-05-11 22:49:38 INFO     api_and_text_ids
+                '''
+                    @ is the concatenation operator
+                    The first sequence is the empty @ the input text
+                    The second sequence is API without a response @ the input text
+                    The third sequence is API with a reponse @ the input text
+                ''' 
+                # 2023-05-11 22:49:38 INFO     <pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>From this, we have 10 - 5 minutes =
+                # 2023-05-11 22:49:38 INFO     <pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>[Calculator(10 - 5)<E2><86><92>]. From this, we have 10 - 5 minutes =
+                # 2023-05-11 22:49:38 INFO     <pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>[Calculator(10 - 5)<E2><86><92>5]. From this, we have 10 - 5 minutes =
+
+                # logging.info(augmented_text_ids)
         
         def _normalize_weights(augmented_text_ids):
             """Normalize the weight of each position in a sequence."""
