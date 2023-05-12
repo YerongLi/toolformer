@@ -469,9 +469,17 @@ class DataGenerator(nn.Module):
                 }
                 j += 1
                 logging.info('augmented_text_ids')
+                # logging.info('len(api_and_text_ids)')
+                # logging.info(len(api_and_text_ids))
+                # 2023-05-11 22:43:30 INFO     augmented_text_ids
+                # 2023-05-11 22:43:30 INFO     len(api_and_text_ids)
+                # 2023-05-11 22:43:30 INFO     3
+
+
                 logging.info('len(api_and_text_ids)')
-                logging.info(len(api_and_text_ids))
-                # logging.info(self.tokenizer.decode(api_and_text_ids))
+                logging.info(self.tokenizer.decode(api_and_text_ids[0]))
+                logging.info(self.tokenizer.decode(api_and_text_ids[1]))
+                logging.info(self.tokenizer.decode(api_and_text_ids[2]))
                 logging.info(augmented_text_ids)
         
         def _normalize_weights(augmented_text_ids):
