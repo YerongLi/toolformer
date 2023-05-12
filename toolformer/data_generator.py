@@ -375,6 +375,7 @@ class DataGenerator(nn.Module):
     ):
         filtered_augmented_text_ids = torch.tensor([]).to(self.device)
         for i, position in enumerate(losses):
+
             negative_loss = min(losses[position][0], losses[position][1])
             positive_loss = losses[position][2]
             
@@ -563,6 +564,9 @@ class DataGenerator(nn.Module):
         
         losses = _calculate_loss(augmented_text_ids)
         filtered_candidate_ids = self._filter_candidate_by_threshold(losses, candidate_ids)
+        logging.info('filtered_candidate_ids')
+        logging.info(len(filtered_candidate_ids))
+        logging.info(self.tokenizer.decode(filtered_candidate_ids))
         return filtered_candidate_ids
     
     def generate(
