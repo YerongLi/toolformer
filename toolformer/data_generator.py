@@ -443,8 +443,8 @@ class DataGenerator(nn.Module):
 
                 conditioning_text_ids = text_ids[:j].to(self.device)
 
-                logging.info('conditioning_text_ids')
-                logging.info(self.tokenizer.decode(conditioning_text_ids))
+                # logging.info('conditioning_text_ids')
+                # logging.info(self.tokenizer.decode(conditioning_text_ids))
                 # 2023-05-11 15:59:07 INFO     conditioning_text_ids
                 # 2023-05-11 15:59:07 INFO     In sum, we have 10 + 5 hours =
                 # 2023-05-11 15:59:07 INFO     conditioning_text_ids
@@ -564,9 +564,12 @@ class DataGenerator(nn.Module):
         
         losses = _calculate_loss(augmented_text_ids)
         filtered_candidate_ids = self._filter_candidate_by_threshold(losses, candidate_ids)
-        logging.info('filtered_candidate_ids')
-        logging.info(len(filtered_candidate_ids.squeeze()))
-        logging.info(self.tokenizer.decode(filtered_candidate_ids.squeeze()))
+        # logging.info('filtered_candidate_ids')
+        # logging.info(len(filtered_candidate_ids.squeeze()))
+        # logging.info(self.tokenizer.decode(filtered_candidate_ids.squeeze()))
+        # 2023-05-11 23:01:24 INFO     filtered_candidate_ids
+        # 2023-05-11 23:01:24 INFO     61
+        # 2023-05-11 23:01:24 INFO     <pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>From this, we have 10 - 5 minutes = [Calculator(10 - 5)] 5 minutes.
         return filtered_candidate_ids
     
     def generate(
