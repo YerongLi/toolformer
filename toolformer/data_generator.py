@@ -468,6 +468,9 @@ class DataGenerator(nn.Module):
                     "target_ids": torch.tensor([next_token_ids, next_token_ids, next_token_ids])
                 }
                 j += 1
+                logging.info('augmented_text_ids')
+                logging.info(self.tokenizer.decode(api_and_text_ids))
+                logging.info(augmented_text_ids)
         
         def _normalize_weights(augmented_text_ids):
             """Normalize the weight of each position in a sequence."""
