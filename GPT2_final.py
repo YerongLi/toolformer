@@ -29,6 +29,8 @@ import csv
 
 
 lyrics = pd.read_csv('../data/lyrics-data.csv')
+print('head')
+print(lyrics.head())
 lyrics = lyrics[lyrics['Idiom']=='ENGLISH']
 
 
