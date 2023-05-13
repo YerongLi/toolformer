@@ -28,7 +28,7 @@ import csv
 # In[ ]:
 
 
-lyrics = pd.read_csv('/content/drive/MyDrive/Google colabs/lyrics-data.csv')
+lyrics = pd.read_csv('../data/lyrics-data.csv')
 lyrics = lyrics[lyrics['Idiom']=='ENGLISH']
 
 
